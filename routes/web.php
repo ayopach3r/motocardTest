@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\StarshipController;
+use App\Http\Controllers\IndexController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,4 +14,4 @@ use App\Http\Controllers\StarshipController;
 |
 */
 
-Route::get('/', [StarshipController::class, 'getData']);
+Route::get('/', [IndexController::class, 'index']);

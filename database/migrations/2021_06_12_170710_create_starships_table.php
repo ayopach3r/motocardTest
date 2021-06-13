@@ -26,7 +26,7 @@ class CreateStarshipsTable extends Migration
             $table->integer('cargo_capacity')->nullable();
             $table->string('consumables')->nullable();
             $table->double('hyperdrive_rating')->nullable();
-            $table->integer('MGLT')->nullable();
+            $table->integer('mglt')->nullable();
             $table->string('starship_class')->nullable();
             $table->dateTime('created')->nullable();
             $table->dateTime('edited')->nullable();

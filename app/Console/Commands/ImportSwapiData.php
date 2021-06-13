@@ -3,9 +3,15 @@
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\DB;
+use App\Repositories\Swapi;
 
 class ImportSwapiData extends Command
 {
+    const STARSHIPS_TABLE_NAME = 'starships';
+    const PILOTS_TABLE_NAME = 'pilots';
+    const PILOT_STARSHIP_TABLE_NAME = 'pilot_starship';
+
     /**
      * The name and signature of the console command.
      *
@@ -37,12 +43,54 @@ class ImportSwapiData extends Command
      */
     public function handle()
     {
-        $confirm = $this->confirm('Do you want to import data from SWAPI?');
+        $swapi = new Swapi();
+        $starships = $swapi->getAllStarships();
+        $pilots = $swapi->getAllPilots();
 
-        if ($confirm) {
-            $this->info('Importing data ...');
-        }
+        $this->refreshTable(
+            $starships[ImportSwapiData::STARSHIPS_TABLE_NAME],
+            ImportSwapiData::STARSHIPS_TABLE_NAME
+        );
+
+        $this->refreshTable(
+            $pilots[ImportSwapiData::PILOTS_TABLE_NAME],
+            ImportSwapiData::PILOTS_TABLE_NAME
+        );
+
+        $this->refreshTable(
+            $starships[ImportSwapiData::PILOT_STARSHIP_TABLE_NAME],
+            ImportSwapiData::PILOT_STARSHIP_TABLE_NAME
+        );
 
         return 0;
     }
+
+    /**
+     * @param $data
+     * @param $table_name
+     * @return bool
+     */
+    private function refreshTable($data, $table_name)
+    {
+        $result = false;
+
+        if (!empty($data)) {
+            $this->info('Refreshing table ' . $table_name . '...');
+            $query = DB::table($table_name)->delete();
+            DB::statement("ALTER TABLE $table_name AUTO_INCREMENT = 1");
+
+            $this->info('Importing data to ' . $table_name . '...');
+            $query = DB::table($table_name)->insert($data);
+
+            if ($query) {
+                $this->info('Imported data');
+                $result = true;
+            }
+        } else {
+            $this->error('No data to import');
+        }
+
+        return $result;
+    }
+
 }

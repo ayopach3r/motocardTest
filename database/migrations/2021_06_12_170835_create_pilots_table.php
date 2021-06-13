@@ -16,16 +16,15 @@ class CreatePilotsTable extends Migration
         Schema::create('pilots', function (Blueprint $table) {
             $table->id();
             $table->string('name')->nullable();
-            $table->string('height')->nullable();
+            $table->integer('height')->nullable();
             $table->string('mass')->nullable();
-            $table->integer('hair_color')->nullable();
-            $table->integer('skin_color')->nullable();
-            $table->double('eye_color')->nullable();
+            $table->string('hair_color')->nullable();
+            $table->string('skin_color')->nullable();
+            $table->string('eye_color')->nullable();
             $table->string('birth_year')->nullable();
-            $table->integer('gender')->nullable();
-            $table->integer('homeworld')->nullable();
-            $table->string('created')->nullable();
-            $table->double('edited')->nullable();
+            $table->string('gender')->nullable();
+            $table->dateTime('created')->nullable();
+            $table->dateTime('edited')->nullable();
         });
     }
 
