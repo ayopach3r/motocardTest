@@ -3,14 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Starship;
-use App\Models\Pilot;
 
-class IndexController extends Controller
+class HomeController extends Controller
 {
 
     public function index()
     {
-        return 0;
+        return view('home.index');
     }
 }

@@ -1,7 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\IndexController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\StarshipController;
+use App\Http\Controllers\PilotController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,4 +16,5 @@ use App\Http\Controllers\IndexController;
 |
 */
 
-Route::get('/', [IndexController::class, 'index']);
+Route::get('/', [HomeController::class, 'index']);
+Route::get('/starships', [StarshipController::class, 'index']);

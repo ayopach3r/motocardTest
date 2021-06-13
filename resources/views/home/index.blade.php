@@ -2,6 +2,6 @@
 
 @section('layout')
 
-<p>index</p>
+<grid-component></grid-component>
 
 @endsection
