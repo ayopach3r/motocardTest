@@ -9,6 +9,7 @@ require('./bootstrap');
 window.Vue = require('vue').default;
 
 import Vuex from 'vuex'
+import store from './Store/index'
 
 Vue.use(Vuex)
 
@@ -25,7 +26,6 @@ Vue.use(Vuex)
 
 Vue.component('grid-component', require('./components/GridComponent.vue').default);
 Vue.component('card-component', require('./components/CardComponent.vue').default);
-Vue.component('item-component', require('./components/ItemComponent.vue').default);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -34,4 +34,5 @@ Vue.component('item-component', require('./components/ItemComponent.vue').defaul
 
 const app = new Vue({
     el: '#app',
+    store
 });

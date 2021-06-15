@@ -7,8 +7,13 @@ use Illuminate\Http\Request;
 
 class PilotController extends Controller
 {
+    /**
+     * @return Pilot[]|\Illuminate\Database\Eloquent\Collection
+     */
     public function index()
     {
-        return Pilot::all();
+        $pilots = Pilot::all();
+
+        return $pilots;
     }
 }

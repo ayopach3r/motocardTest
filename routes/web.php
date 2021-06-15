@@ -17,4 +17,9 @@ use App\Http\Controllers\PilotController;
 */
 
 Route::get('/', [HomeController::class, 'index']);
+
 Route::get('/starships', [StarshipController::class, 'index']);
+Route::post('/starships/{id}/addPilot', [StarshipController::class, 'addPilot']);
+Route::post('/starships/{id}/removePilot', [StarshipController::class, 'removePilot']);
+
+Route::get('/pilots', [PilotController::class, 'index']);

@@ -9,7 +9,14 @@ class Starship extends Model
 {
     use HasFactory;
 
-    public function pilots() {
+    protected $fillable = [
+        'id',
+        'name',
+        'cost_in_credits'
+    ];
+
+    public function pilots()
+    {
         return $this->belongsToMany(Pilot::class);
     }
 }
