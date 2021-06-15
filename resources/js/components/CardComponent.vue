@@ -1,5 +1,5 @@
 <template>
-    <div class="col-sm-4">
+    <div class="col-12 col-md-6 col-lg-4">
         <div class="card card_margin">
             <div class="card-header text-center">
                 <h5 class="card-title">{{ starship.name }}</h5>
@@ -9,16 +9,16 @@
             <div class="card-body">
                 <div v-if="starship.pilots.length > 0">
                     <div v-for="pilot in starship.pilots" :key="pilot.id" :pilot="pilot" class="row">
-                        <div class="col-sm-9">
+                        <div class="col-9">
                             <p>{{ pilot.name }}</p>
                         </div>
-                        <div class="col-sm-3">
+                        <div class="col-3">
                             <button v-on:click="removePilot(pilot.id)" class="btn btn-outline-danger" type="button">Delete</button>
                         </div>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-sm-9">
+                    <div class="col-9">
                         <select v-model="new_pilot" class="form-select">
                             <option v-bind:value="0">Select a new pilot</option>
                             <option v-for="pilot in pilots" v-bind:value="pilot.id">
@@ -26,7 +26,7 @@
                             </option>
                         </select>
                     </div>
-                    <div class="col-sm-3">
+                    <div class="col-3">
                         <button v-if="new_pilot != 0" v-on:click="addPilot(new_pilot)" class="btn btn-success" type="button">Insert</button>
                     </div>
                 </div>
@@ -57,7 +57,6 @@
 
         mounted() {
             console.log('Card component mounted.');
-            this.pilotsFilter(this.starship.pilots, pilots);
         },
 
         methods: {
